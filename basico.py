@@ -5,24 +5,34 @@ assistente = "gemma3:latest"
 print(f"\n {10 * '*'} Assistente: Olá, sobre o que você gostaria de conversar? {10 * '*'} \n")
 print(f"{10 * '-'} Digite /bye pra sair do chat {10 * '-'} \n")
 
-while True: # Sem um loop while, o modelo responderia apenas 1 pergunta.
 
-    pergunta = input("Você :  ")
+while True:
 
-    # palavra chave pra sair do chat
-    if pergunta.lower() == '/bye':  # Diminuindo todas as letras pra caso o user digite bye com CAPSLOCK
+    pergunta = input("\n Você :  ")
+
+    
+    if pergunta.lower() == '/bye':
         break
 
     else:
+        
         contexto = [{'role': 'user', 'content': pergunta}]
+        
+        # stream=True pra printar conforme gera as palavras
+        resposta = ollama.chat(model=assistente, messages=contexto, stream=True) 
+        
+        resposta_completa = ''
 
-        resposta = ollama.chat(model=assistente, messages=contexto)
+        for parte in resposta:
+            chat = parte['message']['content']
+            
+            resposta_completa += chat
 
-        mensagem = resposta['message']['content']
-
-        print(f'Assistente: {mensagem}')
-
-        contexto.append(resposta)
-
+            # sem o end='', vai pular a linha pra cada palavra printada
+            print(chat, end='', flush=True) # flush pra usar o stream
+        
+        contexto.append([{'role': 'assistant', 'content': resposta_completa}])
+        
+        
 
 print(f"\n {10 * '*'} Assistente: Adeus {10 * '*'} \n")
