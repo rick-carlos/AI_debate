@@ -1,22 +1,28 @@
 import ollama
 
-# chama o modelo baixado no ollama
-modelo = "gemma3:1b"
+assistente = "gemma3:latest"
 
-# a pergunta que será feita pro modelo
-pergunta = input("o que você quer saber? : ")
+print(f"\n {10 * '*'} Assistente: Olá, sobre o que você gostaria de conversar? {10 * '*'} \n")
+print(f"{10 * '-'} Digite /bye pra sair do chat {10 * '-'} \n")
 
-# Isso é uma lista de dicionários que serão usados pra dar contexto
-# e uma continuidade da conversa pro modelo, cada resposta do modelo pode ser 
-# incorporada na lista usando append.
-contexto = [{'role': 'user', 'content': pergunta}]
+while True: # Sem um loop while, o modelo responderia apenas 1 pergunta.
 
-# chama o modelo, passa o contexto e armazena a saída em uma variável
-resposta = ollama.chat(model=modelo, messages=contexto)
+    pergunta = input("Você :  ")
 
-# A saída do modelo será uma estrutura de dados e não apenas a reposta crua da pergunta
-# Pra ter só o texto da resposta, procure diretamente o conteudo armazenado na variável reposta
-mensagem = resposta['message']['content']
+    # palavra chave pra sair do chat
+    if pergunta.lower() == '/bye':  # Diminuindo todas as letras pra caso o user digite bye com CAPSLOCK
+        break
 
-# printa a resposta
-print(mensagem)
+    else:
+        contexto = [{'role': 'user', 'content': pergunta}]
+
+        resposta = ollama.chat(model=assistente, messages=contexto)
+
+        mensagem = resposta['message']['content']
+
+        print(f'Assistente: {mensagem}')
+
+        contexto.append(resposta)
+
+
+print(f"\n {10 * '*'} Assistente: Adeus {10 * '*'} \n")
