@@ -2,7 +2,7 @@ from pathlib import Path
 
 def assunto():
 
-    print("Você mesmo quer definir o tema do debate ou quer usar um arquivo de texto" \
+    print("\n\nVocê mesmo quer definir o tema do debate ou quer usar um arquivo de texto " \
     "como referência? \n" \
     "Caso queia usar um arquivo de texto, cole todo o texto no arquivo tema.txt " \
     "no diretório textos.\n " \

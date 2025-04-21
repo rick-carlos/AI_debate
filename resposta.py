@@ -15,3 +15,4 @@ def resolution(lista_debate, modelo):
             print(chat, end='', flush=True)
         
     return resposta_completa
+
