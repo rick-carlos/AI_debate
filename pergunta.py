@@ -6,31 +6,36 @@ def assunto():
     "como referência? \n" \
     "Caso queia usar um arquivo de texto, cole todo o texto no arquivo tema.txt " \
     "no diretório textos.\n " \
-    "Digite 1 ou 2:\n" \
-    "1) Definir tema do debate\n" \
-    "2) Usar arquivo de texto como base\n")
+    "Digite 1,2 ou 3:\n" \
+    "1) Definir tema do debate entre modelos \n" \
+    "2) Usar arquivo de texto como base para debate entrem modelos \n" \
+    "3) Debater você mesmo com o modelo \n" )
     
     while True:
 
         alternativa = input(": ")
-
+        assunto = []
         if alternativa == '1':
 
             tema = input("Qual o tema do debate? ")
-            return tema
-            break
+            
+            assunto.extend([tema, 'debate_entre_modelos'])
+            return assunto
 
         elif alternativa == '2':
 
             try:
                 procurar_arquivo = Path("textos") / "tema.txt"
                 tema = procurar_arquivo.read_text(encoding='utf-8')
-                return tema
-                break
+                assunto.extend([tema, 'debate_entre_modelos'])
+                return assunto
 
             except FileNotFoundError:
                 print("\n Arquivo não encontrado. Por favor crie um arquivo" \
                 " tema.txt no diretório textos ")
+
+        elif alternativa == '3':
+            return 'conversar_com_modelo'
 
         else:
             print("digite uma alternativa válida")
