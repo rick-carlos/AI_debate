@@ -9,7 +9,10 @@ def assunto():
     "Digite 1,2 ou 3:\n" \
     "1) Definir tema do debate entre modelos \n" \
     "2) Usar arquivo de texto como base para debate entrem modelos \n" \
-    "3) Debater você mesmo com o modelo \n" )
+    "3) Debater você mesmo com o modelo " \
+    "\n\n 📕 Você pode definir a personalidade dos modelos A,B e Chat no diretório\n" \
+    "textos/persona/ nos arquivos persona_A, persona_B e persona_chat. \n Você pode ver referências de " \
+    "personalidades no arquivo referências_personalidades.txt\n\n" )
     
     while True:
 

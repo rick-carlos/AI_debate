@@ -2,20 +2,28 @@ import ollama
 
 
 
-def chat():
+def chat(personalidade_xat):
 
     assistente = "gemma3:latest"
     contexto = []
+    contexto.append({'role': 'assistant', 'content': personalidade_xat})
 
     print(f"\n {10 * '*'} Assistente: Olá, sobre o que você gostaria de conversar? {10 * '*'} \n")
     print(f"{10 * '-'} Digite /bye pra sair do chat {10 * '-'} \n")
 
     bloco_de_texto = []
+    
+    # As variáveis abaixo são só pra demarcar quem está falando quando a conversa for 
+    # salva no bloco de texto.
+    usuario = 'Você: \n'
+    modelo = "Assistente: \n"
+    separador = '\n\n'
 
     while True:
 
-        pergunta = input("\n Você :  ")
-        bloco_de_texto.append(pergunta)
+        pergunta = input("\n\n Você :  ")
+
+        bloco_de_texto.extend([usuario, pergunta, separador])
 
         
         if pergunta.lower() == '/bye':
@@ -39,7 +47,7 @@ def chat():
                     print(chat, end='', flush=True)
             
             contexto.append({'role': 'assistant', 'content': resposta_completa})
-            bloco_de_texto.append(resposta_completa)
+            bloco_de_texto.extend([modelo, resposta_completa, separador])
 
     print(f"\n {10 * '*'} Assistente: Adeus {10 * '*'} \n")
     return bloco_de_texto

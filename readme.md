@@ -2,12 +2,13 @@
 
 ## É um projeto simples pra criar debates com modelos
 
-### Adicionado algumas funcionalidades 🚀
+### Funcionalidades até o momento 🚀
 
 1) Definir um tema de debate que será discutido pelos modelos
 2) Usar um arquivo de texto como referência pro debate
 3) Debate entre o usuário e o modelo
-4) Todo o debate agora é salvo em um arquivo de texto no diretórioo textos/debates
+4) Todo o debate agora é salvo em um arquivo de texto no diretório textos/debates
+5) A personalidade de todos os modelos pode ser definida no diretório textos/persona
 
 #### Requirements
 - Python 3.10+
