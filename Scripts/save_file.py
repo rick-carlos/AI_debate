@@ -14,5 +14,5 @@ def salvar(texto):
     bloco_de_texto = " ".join(texto)
 
     # Escreve o debate inteiro no arquivo .txt
-    with open(arquivo_de_texto, 'w') as f:
+    with open(arquivo_de_texto, 'w', encoding='utf-8') as f:
         f.write(bloco_de_texto)

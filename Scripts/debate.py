@@ -31,6 +31,12 @@ def debate(modelo_a, modelo_b, topico):
 
         while x <= rodadas:
 
+            devaneio = f'conecte sua resposta de volta ao tema do debate que é {topico}'
+
+            if x % 5 == 0:
+                contexto_modelo_A.append({'role': 'user', 'content': devaneio})
+
+
             presentation = (f'\n\n{11 * "-"} Rodada {x} de {rodadas} {11 * "-"} \n'
             f'\n\n {10 * "*"} Resposta do Modelo A 🤖 {10 * "*"}\n\n')
             texto.append(presentation)
